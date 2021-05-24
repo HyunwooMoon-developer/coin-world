@@ -1,0 +1,27 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+body{
+  background-color: #5b6e77;
+}
+
+ul{
+  list-style: none;
+}
+
+.coinlist-image{
+  width: 70px;
+}
+
+.coinlist-item{
+  display: flex;
+}
+
+.coinsummary {
+  border-color: white ;
+  border-style: outset ;
+}
