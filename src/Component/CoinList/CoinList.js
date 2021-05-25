@@ -5,14 +5,13 @@ import Coin from "../Coin/Coin";
 
 const CoinList = () => {
   const [coins, setCoins] = useState([]);
-  const { CoinList } = useContext(CoinContext);
+  const { CoinList, deleteCoin } = useContext(CoinContext);
   const [isLoading, setIsLoading] = useState(false);
-  console.log(CoinList);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      const response = await Coingecko.get("/coins/markets/", {
+      const response = await Coingecko.get("/coins/markets", {
         params: {
           vs_currency: "usd",
           ids: CoinList.join(","),
@@ -22,8 +21,12 @@ const CoinList = () => {
       setIsLoading(false);
     };
 
-    fetchData();
-  }, []);
+    if (CoinList.length > 0) {
+      fetchData();
+    } else {
+      setCoins([]);
+    }
+  }, [CoinList]);
 
   const renderCoins = () => {
     if (isLoading) {
@@ -32,8 +35,20 @@ const CoinList = () => {
 
     return (
       <ul className="coinlist list-group mt-2">
+      <li className="d-flex justify-content-between align-items-center">
+        <p>Coin</p>
+        <p>Current Price</p>
+        <p>Up & Down</p>
+      </li>
         {coins.map((coin) => {
-          return <Coin key={coin.id} coin={coin} />;
+          return (
+            <Coin
+              id={coin.id}
+              key={coin.id}
+              coin={coin}
+              deleteCoin={deleteCoin}
+            />
+          );
         })}
       </ul>
     );

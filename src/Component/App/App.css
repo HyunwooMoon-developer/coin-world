@@ -1,8 +1,8 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 body{
@@ -22,6 +22,21 @@ ul{
 }
 
 .coinsummary {
-  border-color: white ;
-  border-style: outset ;
+  border-color: white !important;
+  border-style: outset !important;
+}
+
+.delete-icon {
+  display: none;
+  position: relative;
+  right: 5px;
+}
+
+.coin:hover .delete-icon {
+  display: block;
+}
+
+
+.coin-data-category {
+  font-size: 10px;
 }
